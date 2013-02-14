@@ -1,14 +1,14 @@
 //
-//  AppDelegate.m
+//  CardGameAppDelegate.m
 //  Matchismo
 //
 //  Created by Raymond Mendoza on 2013-02-14.
 //  Copyright (c) 2013 Raymond Mendoza. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "CardGameAppDelegate.h"
 
-@implementation AppDelegate
+@implementation CardGameAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

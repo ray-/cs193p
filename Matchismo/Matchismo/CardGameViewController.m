@@ -1,18 +1,18 @@
 //
-//  ViewController.m
+//  CardGameViewController.m
 //  Matchismo
 //
 //  Created by Raymond Mendoza on 2013-02-14.
 //  Copyright (c) 2013 Raymond Mendoza. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "CardGameViewController.h"
 
-@interface ViewController ()
+@interface CardGameViewController ()
 
 @end
 
-@implementation ViewController
+@implementation CardGameViewController
 
 - (void)viewDidLoad
 {

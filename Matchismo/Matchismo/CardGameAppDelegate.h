@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  CardGameAppDelegate.h
 //  Matchismo
 //
 //  Created by Raymond Mendoza on 2013-02-14.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface CardGameAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
