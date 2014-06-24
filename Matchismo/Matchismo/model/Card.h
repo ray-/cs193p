@@ -12,9 +12,9 @@
 
 @property (nonatomic)NSString * contents;
 
-@property (nonatomic, getter = isFaceUp)BOOL faceUp;
+@property (nonatomic, getter = isChose)BOOL chosen;
 
-@property (nonatomic, getter = isUnplayable)BOOL unplayable;
+@property (nonatomic, getter = isMatched)BOOL matched;
 
 -(int)match:(NSArray *) otherCards;
 

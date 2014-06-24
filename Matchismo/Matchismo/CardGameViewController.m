@@ -38,8 +38,8 @@
         Card * card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
         [cardButton setTitle:card.contents forState:UIControlStateSelected];
         [cardButton setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
-        cardButton.selected = card.isFaceUp;
-        cardButton.enabled = !card.isUnplayable;
+        cardButton.selected = card.chosen;
+        cardButton.enabled = !card.matched;
         cardButton.alpha = cardButton.enabled ? 1.0 : 0.3;
     }
 [self.scoreLabel setText:[NSString stringWithFormat:@"Score: %d", self.game.score]];

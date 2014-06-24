@@ -11,6 +11,7 @@
 @implementation PlayingCard
 
 @synthesize suit = _suit;
+static NSArray * validSuits = nil;
 
 - (int)match:(NSArray *)otherCards {
 
@@ -42,7 +43,6 @@
 }
 
 + (NSArray *) validSuits {
-    static NSArray * validSuits = nil;
     if (!validSuits) {
         validSuits = @[@"♥", @"♦", @"♠", @"♣"];
     }
@@ -55,7 +55,13 @@
 }
 
 + (NSUInteger) maxRank {
-    return [[PlayingCard rankStrings] count];
+    return [[self rankStrings] count] - 1;
+}
+
+- (void)setRank:(NSUInteger)rank {
+    if (rank <= [PlayingCard maxRank]) {
+        _rank = rank;
+    }
 }
 
 @end

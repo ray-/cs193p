@@ -55,14 +55,14 @@
 -(void)flipCardAtIndex:(NSUInteger)index {
     Card * card = [self cardAtIndex:index];
     
-    if (!card.isUnplayable) {
-        if (!card.faceUp) {
+    if (!card.matched) {
+        if (!card.chosen) {
             for (Card * otherCard in self.cards) {
-                if (otherCard.faceUp && !otherCard.isUnplayable) {
+                if (otherCard.chosen && !otherCard.matched) {
                     int matchScore = [card match:@[otherCard]];
                     if (matchScore) {
-                        card.unplayable = YES;
-                        otherCard.unplayable = YES;
+                        card.matched = YES;
+                        otherCard.matched = YES;
                         self.score += matchScore * MATCH_BONUS;
                     } else {
                         self.score -= MISMATCH_PENALTY;
@@ -73,7 +73,7 @@
             }
             self.score -= FLIP_COST;
         }
-        card.faceUp = !card.faceUp;
+        card.chosen = !card.chosen;
     }
 }
 

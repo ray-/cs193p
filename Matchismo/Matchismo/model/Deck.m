@@ -22,13 +22,17 @@
     return _cards;
 }
 
--(void)addCard:(Card *)card atTop:(BOOL)addToTop {
+-(void)addCard:(Card *)card atTop:(BOOL)atTop {
 
-    if (addToTop) {
+    if (atTop) {
         [self.cards insertObject:card atIndex:0];
     } else {
         [self.cards addObject:card];
     }
+}
+
+-(void)addCard:(Card *)card {
+    [self addCard:card atTop:NO];
 }
 
 -(Card *)drawRandomCard {
