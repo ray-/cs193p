@@ -20,9 +20,9 @@
 #define MISMATCH_PENALTY 2
 #define MATCH_BONUS 4
 
-
--(id)initCardCount:(NSUInteger)cardCount
-         usingDeck:(Deck *)deck {
+// designated initializer
+-(instancetype)initWithCardCount:(NSUInteger)cardCount
+             usingDeck:(Deck *)deck {
 
     self = [super init];
     
@@ -52,7 +52,7 @@
     return (index < self.cards.count) ? self.cards[index] : nil;
 }
 
--(void)flipCardAtIndex:(NSUInteger)index {
+-(void)chooseCardAtIndex:(NSUInteger)index {
     Card * card = [self cardAtIndex:index];
     
     if (!card.matched) {
