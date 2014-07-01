@@ -12,6 +12,8 @@
 
 @property (strong, nonatomic) NSMutableArray * cards;
 @property (nonatomic) int score;
+@property (nonatomic) int cardCount;
+@property (strong, nonatomic) Deck * deck;
 @end
 
 @implementation CardMatchingGame
@@ -27,6 +29,8 @@
     self = [super init];
     
     if (self) {
+        self.cardCount = cardCount;
+        self.deck = deck;
         for (int i = 0; i < cardCount; i++) {
             Card * card = [deck drawRandomCard];
             if (!card) {
@@ -35,6 +39,7 @@
                 self.cards[i] = card;
             }
         }
+
     }
     
     return self;
@@ -75,6 +80,27 @@
         }
         card.chosen = !card.chosen;
     }
+}
+
+- (void) restart {
+    self.score = 0;
+    
+    for (Card * card in self.cards) {
+        card.matched = NO;
+        card.chosen = NO;
+        [self.deck addCard:card];
+    }
+    
+    for (int i = 0; i < self.cardCount; i++) {
+        Card * card = [self.deck drawRandomCard];
+        if (!card) {
+            return;
+        } else {
+            self.cards[i] = card;
+        }
+    }
+    
+    
 }
 
 @end
