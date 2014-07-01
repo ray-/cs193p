@@ -17,6 +17,7 @@
 @property (strong, nonatomic) CardMatchingGame * game;
 @property (weak, nonatomic) IBOutlet UIButton *redealButton;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *gameModeSwitch;
 @end
 
 @implementation CardGameViewController
@@ -70,6 +71,9 @@
     self.flipCount = 0;
     [self updateUI];
 
+}
+
+- (IBAction)switchGameMode:(id)sender {
 }
 
 @end
