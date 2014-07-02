@@ -66,22 +66,27 @@ int activeCardsChosen = 0;
     
     if (!card.matched) {
         if (!card.chosen && activeCardsChosen < self.numCardsToMatch) {
-            NSArray * chosenCards = [self chosenCards];
+            self.score -= FLIP_COST;            activeCardsChosen++;
+
             
-            int matchScore = [card match:chosenCards];
-            if (matchScore) {
-                card.matched = YES;
-                for (Card * chosenCard in chosenCards) {
-                    chosenCard.matched = YES;
+            if (activeCardsChosen == self.numCardsToMatch) {
+                NSArray * chosenCards = [self chosenCards];
+                
+                int matchScore = [card match:chosenCards];
+                if (matchScore) {
+                    card.matched = YES;
+                    for (Card * chosenCard in chosenCards) {
+                        chosenCard.matched = YES;
+                    }
+                    self.score += matchScore * MATCH_BONUS;
+                    activeCardsChosen -= self.numCardsToMatch;
+                } else {
+                    self.score -= MISMATCH_PENALTY;
                 }
-                self.score += matchScore * MATCH_BONUS;
-                activeCardsChosen -= self.numCardsToMatch;
-            } else {
-                self.score -= MISMATCH_PENALTY;
             }
-            self.score -= FLIP_COST;
-            activeCardsChosen++;
+            
             card.chosen = !card.chosen;
+
         } else if (card.chosen) {
             card.chosen = !card.chosen;
             activeCardsChosen--;

@@ -17,12 +17,11 @@ static NSArray * validSuits = nil;
 
     int score = 0;
     
-    if (otherCards.count == 1) {
-        PlayingCard * otherCard = [otherCards lastObject];
+    for (PlayingCard * otherCard in otherCards) {
         if ([self.suit isEqualToString:otherCard.suit]) {
-            score = 1;
+            score += 1;
         } else if (self.rank == otherCard.rank) {
-            score = 4;
+            score += 4;
         }
     }
     return score;
