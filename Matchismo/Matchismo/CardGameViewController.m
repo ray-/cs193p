@@ -63,17 +63,24 @@
 - (IBAction)touchCardButton:(UIButton *)sender {
     [self.game chooseCardAtIndex:[self.cardButtons indexOfObject:sender]];
     self.flipCount++;
+    self.gameModeSwitch.enabled = NO;
     [self updateUI];
 }
 
 - (IBAction)redeal:(id)sender {
     [_game restart];
     self.flipCount = 0;
+    self.gameModeSwitch.enabled = YES;
     [self updateUI];
 
 }
 
-- (IBAction)switchGameMode:(id)sender {
+- (IBAction)switchGameMode:(UISwitch *)sender {
+    if (sender.isOn) {
+        self.game.numCardsToMatch = 3;
+    } else {
+        self.game.numCardsToMatch = 2;
+    }
 }
 
 @end

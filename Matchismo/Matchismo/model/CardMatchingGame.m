@@ -14,7 +14,6 @@
 @property (nonatomic) int score;
 @property (nonatomic) int cardCount;
 @property (strong, nonatomic) Deck * deck;
-@property (nonatomic) int numCardsToMatch;
 @end
 
 @implementation CardMatchingGame
@@ -62,7 +61,7 @@ int activeCardsChosen = 0;
     return (index < self.cards.count) ? self.cards[index] : nil;
 }
 
--(BOOL)chooseCardAtIndex:(NSUInteger)index {
+-(void)chooseCardAtIndex:(NSUInteger)index {
     Card * card = [self cardAtIndex:index];
     
     if (!card.matched) {
@@ -83,15 +82,11 @@ int activeCardsChosen = 0;
             self.score -= FLIP_COST;
             activeCardsChosen++;
             card.chosen = !card.chosen;
-            return true;
         } else if (card.chosen) {
             card.chosen = !card.chosen;
             activeCardsChosen--;
-            return true;
         }
     }
-    
-    return false;
 }
 
 - (NSArray *)chosenCards {

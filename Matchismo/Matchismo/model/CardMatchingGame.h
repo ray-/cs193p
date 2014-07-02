@@ -14,12 +14,13 @@
 - (id)initWithCardCount:(NSUInteger) cardCount
               usingDeck:(Deck *) deck;
 
-- (BOOL)chooseCardAtIndex:(NSUInteger) index;
+- (void)chooseCardAtIndex:(NSUInteger) index;
 
 - (Card *)cardAtIndex:(NSUInteger) index;
 
 - (void) restart;
 
 @property (nonatomic, readonly) int score;
+@property (nonatomic) int numCardsToMatch;
 
 @end
