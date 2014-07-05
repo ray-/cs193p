@@ -66,18 +66,15 @@ int activeCardsChosen = 0;
     
     if (!card.matched) {
         if (!card.chosen && activeCardsChosen < self.numCardsToMatch) {
-            self.score -= FLIP_COST;            activeCardsChosen++;
+            self.score -= FLIP_COST;
+            activeCardsChosen++;
 
-            
             if (activeCardsChosen == self.numCardsToMatch) {
                 NSArray * chosenCards = [self chosenCards];
                 
                 int matchScore = [card match:chosenCards];
                 if (matchScore) {
                     card.matched = YES;
-                    for (Card * chosenCard in chosenCards) {
-                        chosenCard.matched = YES;
-                    }
                     self.score += matchScore * MATCH_BONUS;
                     activeCardsChosen -= self.numCardsToMatch;
                 } else {

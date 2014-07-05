@@ -18,9 +18,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *redealButton;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *gameModeSwitch;
+@property (weak, nonatomic) IBOutlet UILabel *matchStatusLabel;
 @end
 
 @implementation CardGameViewController
+
+int lastScore = 0;
 
 - (CardMatchingGame *) game {
     if (!_game) {
@@ -36,15 +39,38 @@
 }
                  
 - (void) updateUI {
+    NSString * matchStatus = @"";
     for (UIButton * cardButton in self.cardButtons) {
         Card * card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
         [cardButton setTitle:[self titleForCard:card] forState:UIControlStateNormal];
         [cardButton setBackgroundImage:[self backgroundImageForCard:card] forState:UIControlStateNormal];
         cardButton.selected = card.chosen;
+        bool canMatch = !card.matched;
         cardButton.enabled = !card.matched;
         cardButton.alpha = cardButton.enabled ? 1.0 : 0.3;
+        
+        if (card.isChosen && canMatch) {
+            matchStatus = [matchStatus stringByAppendingString:card.contents];
+        }
+
+        
+        // TODO: find chosen and matched cards.
+        //       If chosen and matched, set selected
+        //       Mark the non matched card selected as well.
     }
     [self.scoreLabel setText:[NSString stringWithFormat:@"Score: %d", self.game.score]];
+    
+    int scoreDiff = self.game.score - lastScore;
+    
+    if (scoreDiff > 0) {
+        matchStatus = [matchStatus stringByAppendingFormat:@" matched for %d points", scoreDiff];
+    } else if (scoreDiff < 0) {
+        matchStatus = [matchStatus stringByAppendingFormat:@" don't match! %d point penalty", scoreDiff];
+    }
+    
+    [self.matchStatusLabel setText:matchStatus];
+    matchStatus = @"";
+    lastScore = self.game.score;
 }
 
 - (NSString *)titleForCard: (Card *)card {

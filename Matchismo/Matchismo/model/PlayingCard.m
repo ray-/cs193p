@@ -16,14 +16,22 @@ static NSArray * validSuits = nil;
 - (int)match:(NSArray *)otherCards {
 
     int score = 0;
+    bool matched = false;
     
     for (PlayingCard * otherCard in otherCards) {
         if ([self.suit isEqualToString:otherCard.suit]) {
             score += 1;
+            matched = true;
+            otherCard.matched = true;
         } else if (self.rank == otherCard.rank) {
             score += 4;
+            matched = true;
+            otherCard.matched = true;
         }
     }
+
+    self.matched = matched;
+    
     return score;
 }
 
